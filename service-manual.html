@@ -154,6 +154,8 @@
 
     pre {
       color: #6ee7b7 !important;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
 
     code {
@@ -198,6 +200,27 @@
       color: #a7f3d0;
       border-bottom-color: #6ee7b7;
     }
+
+    /* Fix for mobile code blocks */
+    .overflow-x-auto {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    pre {
+      overflow-x: auto;
+      white-space: pre;
+      word-wrap: normal;
+    }
+    
+    @media (max-width: 640px) {
+      pre {
+        font-size: 0.75rem;
+      }
+      .bg-gray-800 {
+        overflow-x: auto;
+      }
+    }
   </style>
 </head>
 
@@ -228,17 +251,17 @@
     </p>
   </div>
 
-<!-- WHAT YOU DON'T NEED ANYMORE -->
-<div class="card p-6 mb-6" style="background-color: rgba(17, 94, 74, 0.3);">
-  <h3 style="color: #e5e5e5;">What you don't need anymore</h3>
-  <ul class="spec-list">
-    <li style="color: #d4d4d4;">No backend for payments</li>
-    <li style="color: #d4d4d4;">No Stripe integration code</li>
-    <li style="color: #d4d4d4;">No auth system for license verification</li>
-    <li style="color: #d4d4d4;">No license storage or database</li>
-    <li style="color: #d4d4d4;">No webhooks setup</li>
-  </ul>
-</div>
+  <!-- WHAT YOU DON'T NEED ANYMORE -->
+  <div class="card p-6 mb-6" style="background-color: rgba(17, 94, 74, 0.3);">
+    <h3 style="color: #e5e5e5;">What you don't need anymore</h3>
+    <ul class="spec-list">
+      <li style="color: #d4d4d4;">No backend for payments</li>
+      <li style="color: #d4d4d4;">No Stripe integration code</li>
+      <li style="color: #d4d4d4;">No auth system for license verification</li>
+      <li style="color: #d4d4d4;">No license storage or database</li>
+      <li style="color: #d4d4d4;">No webhooks setup</li>
+    </ul>
+  </div>
 
   <!-- HOW IT WORKS — SIMPLE -->
   <div class="card p-6 mb-6">
@@ -259,11 +282,11 @@
     <ul class="spec-list">
       <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">true</strong> for: Pro (active) OR Trial (not expired)</li>
       <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">false</strong> for: Free, expired trial, canceled pro</li>
-      <li>Trial: one per user per app, 14 days</li>
+      <li>Trial: one per user per app</li>
     </ul>
 
     <h4>Storage (client-side)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 // SDK handles all storage automatically (chrome.storage.local or localStorage)
 
@@ -293,19 +316,19 @@
     <p class="mb-4">For web apps, Chrome extensions, React, Vue — anything that runs JS.</p>
     
     <h4>Installation</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">npm install sdk-2minpay</pre>
     </div>
 
     <h4>Usage (all you need)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 import { init, isPaid, showPaywall } from "sdk-2minpay";
 
 // Initialize (call once)
 await init({ appId: "your-app-id" });
 
-// Check if user has access (true = Pro OR active Trial)
+// Check if user has access
 if (!await isPaid()) {
   // Shows payment modal with Pro, Trial, and "Restore" button
   await showPaywall();
@@ -317,7 +340,7 @@ loadApp();
     </div>
 
     <h4>Optional methods (for UI)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 // Get full user info (for UI badges, trial countdown, etc.)
 const user = await getUser();
@@ -359,12 +382,12 @@ await logout();
     <p class="mb-4">For Java, Python, Go, Rust, PHP — any language.</p>
 
     <h4>Base URL</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">https://api.2minpay.com/v1</pre>
     </div>
 
     <h4>Verify JWT token</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 POST /verify
 Authorization: Bearer &lt;jwt_token&gt;
@@ -384,7 +407,7 @@ Response:
     </p>
 
     <h4>Get user by email (for webhooks)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg">
+    <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 GET /user?email=user@example.com
 Authorization: Bearer &lt;api_key&gt;
@@ -422,7 +445,7 @@ Response:
     <h3>Webhooks</h3>
     <p class="mb-4">We notify your backend when subscription changes.</p>
 
-    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 POST /your-webhook-endpoint
 {
