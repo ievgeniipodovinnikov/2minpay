@@ -23,7 +23,7 @@
     }
 
     footer {
-      color: #aaa;
+      color: #6b7280;
       margin-top: auto;
     }
 
@@ -35,7 +35,7 @@
 
     .card {
       background-color: #000000;
-      color: white;
+      color: #8a8f9a;
       border-radius: 1rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -48,16 +48,29 @@
     .btn {
       background: white;
       color: black;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
       transition: 0.2s;
       cursor: pointer;
       display: inline-block;
+      font-size: 0.875rem;
     }
 
     .btn:hover {
       background: #e5e5e5;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #6b7280;
+      color: #9ca3af;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #9ca3af;
+      color: #d1d5db;
     }
 
     .glass-main {
@@ -75,33 +88,6 @@
       }
     }
 
-    .code-wrapper {
-      display: flex;
-      justify-content: center;
-    }
-    
-    .code-card {
-      display: inline-block;
-      width: auto;
-      min-width: auto;
-    }
-    
-    .code-card pre {
-      white-space: pre;
-      word-break: normal;
-      overflow-x: auto;
-    }
-    
-    @media (max-width: 640px) {
-      .code-card {
-        width: 100%;
-      }
-      .code-card pre {
-        white-space: pre-wrap;
-        word-break: break-word;
-      }
-    }
-
     html {
       scroll-behavior: smooth;
     }
@@ -111,6 +97,7 @@
       font-weight: bold;
       margin-top: 1.5rem;
       margin-bottom: 1rem;
+      color: #b0b5c0;
     }
 
     h4 {
@@ -118,7 +105,7 @@
       font-weight: 600;
       margin-top: 1rem;
       margin-bottom: 0.75rem;
-      color: #00ff87;
+      color: #6ee7b7;
     }
 
     .spec-list {
@@ -130,10 +117,9 @@
 
     .spec-list li {
       margin-bottom: 0.5rem;
-      color: #d1d5db;
+      color: #8a8f9a;
     }
 
-    /* Center content inside cards */
     .card {
       text-align: left;
     }
@@ -141,171 +127,356 @@
     .card h3, .card h4 {
       text-align: left;
     }
+
+    .anchor-link {
+      scroll-margin-top: 2rem;
+    }
+
+    p {
+      color: #8a8f9a;
+    }
+
+    strong {
+      color: #a0a5b0;
+    }
+
+    .text-gray-300 {
+      color: #8a8f9a !important;
+    }
+
+    .text-green-400 {
+      color: #6ee7b7 !important;
+    }
+
+    .bg-gray-800 {
+      background-color: #1a1a1a !important;
+    }
+
+    pre {
+      color: #6ee7b7 !important;
+    }
+
+    code {
+      color: #6ee7b7;
+    }
+
+    .border-green-500 {
+      border-color: #2e7d64 !important;
+    }
+
+    .bg-green-900\/30 {
+      background-color: rgba(17, 94, 74, 0.3) !important;
+    }
+
+    .text-green-300 {
+      color: #6ee7b7 !important;
+    }
+
+    .bg-red-900\/30 {
+      background-color: rgba(127, 29, 29, 0.3) !important;
+    }
+
+    .text-red-300 {
+      color: #fca5a5 !important;
+    }
+
+    .border-red-500\/50 {
+      border-color: rgba(239, 68, 68, 0.5) !important;
+    }
+
+    .soft-white {
+      color: #b0b5c0;
+    }
+
+    .link {
+      color: #6ee7b7;
+      text-decoration: none;
+      border-bottom: 1px dotted #2e7d64;
+    }
+
+    .link:hover {
+      color: #a7f3d0;
+      border-bottom-color: #6ee7b7;
+    }
   </style>
 </head>
 
-<body class="text-white">
+<body>
 
-<header class="text-center py-16 px-4">
-  <h1 class="text-5xl font-bold mb-4">2MinPay</h1>
-  <p class="text-xl text-gray-300 mb-6">Technical Manual</p>
+<header class="text-center py-12 px-4">
+  <h1 class="text-4xl font-bold mb-2" style="color: #b0b5c0;">2MinPay</h1>
+  <p class="mb-6" style="color: #8a8f9a;">Service Manual</p>
   <a href="index.html" class="btn">← Back to main page</a>
 </header>
 
 <div class="glass-main">
   
-  <h2 class="text-3xl font-bold mb-6 text-center">📖 System Specification</h2>
-  <p class="text-gray-300 mb-8 text-center">
-    This document describes the architecture, data models, and API behavior of 2MinPay.
-  </p>
-
-  <!-- 1. Core Entities -->
+  <!-- WHAT WE OFFER -->
   <div class="card p-6 mb-6">
-    <h3>🏗️ 1. Core Entities</h3>
-    
-    <h4>Developer Account</h4>
-    <ul class="spec-list">
-      <li>Email, Stripe Connect ID, API keys</li>
-      <li>Has many <strong>Applications</strong></li>
-    </ul>
+    <h3>What we offer</h3>
+    <p class="mb-4 text-lg" style="color: #a0a5b0;">
+      Add a paywall to any app in 2 minutes — without building auth, payments, or license backend.
+    </p>
+    <p class="mb-3">
+      • <a href="#js-sdk" class="link">JavaScript SDK</a> — two lines of code to add payments
+    </p>
+    <p class="mb-3">
+      • <a href="#api" class="link">REST API</a> — verify licenses from any backend
+    </p>
+    <p class="mb-3">
+      • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
+    </p>
+  </div>
 
-    <h4>Application</h4>
-    <ul class="spec-list">
-      <li>Belongs to a <strong>Developer Account</strong></li>
-      <li>Has its own <strong>publicKey</strong> and <strong>secretKey</strong></li>
-      <li>Defines available plans: <code class="text-green-400">free</code>, <code class="text-green-400">pro</code>, <code class="text-green-400">trial</code></li>
-      <li>Stores Stripe Product/Price IDs</li>
-    </ul>
+<!-- WHAT YOU DON'T NEED ANYMORE -->
+<div class="card p-6 mb-6" style="background-color: rgba(17, 94, 74, 0.3);">
+  <h3 style="color: #e5e5e5;">What you don't need anymore</h3>
+  <ul class="spec-list">
+    <li style="color: #d4d4d4;">No backend for payments</li>
+    <li style="color: #d4d4d4;">No Stripe integration code</li>
+    <li style="color: #d4d4d4;">No auth system for license verification</li>
+    <li style="color: #d4d4d4;">No license storage or database</li>
+    <li style="color: #d4d4d4;">No webhooks setup</li>
+  </ul>
+</div>
 
-    <h4>User (End Customer)</h4>
+  <!-- HOW IT WORKS — SIMPLE -->
+  <div class="card p-6 mb-6">
+    <h3>How it works — simple</h3>
     <ul class="spec-list">
-      <li>Identified by <strong>userId</strong> (provided by developer) or <strong>email</strong></li>
-      <li>Belongs to exactly <strong>one Application</strong> (user is scoped to the app)</li>
-      <li>Has a current <strong>plan</strong> and <strong>status</strong></li>
-    </ul>
-
-    <h4>License / Subscription</h4>
-    <ul class="spec-list">
-      <li>Stores: <code>plan</code> (free/pro/trial), <code>status</code> (active/expired/canceled), <code>currentPeriodEnd</code> (timestamp)</li>
-      <li>For <strong>trial</strong>: stores <code>trialStart</code>, <code>trialEnd</code></li>
-      <li>For <strong>pro</strong>: stores <code>subscriptionId</code> (Stripe), <code>cancelAtPeriodEnd</code> flag</li>
+      <li>1. User opens your app → SDK calls <code>isPaid()</code> → 2MinPay checks license</li>
+      <li>2. If not paid → <code>showPaywall()</code> → Stripe checkout</li>
+      <li>3. After payment → SDK gets JWT → <code>isPaid()</code> returns true</li>
+      <li>4. On new device → user clicks "Restore" → email → magic link → access restored</li>
     </ul>
   </div>
 
-  <!-- 2. Plan Types & Logic -->
-  <div class="card p-6 mb-6">
-    <h3>🎚️ 2. Plan Types & Logic</h3>
+  <!-- HOW IT WORKS — DETAILED -->
+  <div id="how-it-works" class="card p-6 mb-6 anchor-link">
+    <h3>How it works — detailed</h3>
     
-    <h4>Free</h4>
+    <h4>Access logic</h4>
     <ul class="spec-list">
-      <li>No expiration, always active</li>
-      <li>No payment required</li>
-      <li>Can upgrade to <strong>pro</strong> or <strong>trial</strong></li>
+      <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">true</strong> for: Pro (active) OR Trial (not expired)</li>
+      <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">false</strong> for: Free, expired trial, canceled pro</li>
+      <li>Trial: one per user per app, 14 days</li>
     </ul>
 
-    <h4>Trial</h4>
-    <ul class="spec-list">
-      <li>Has <strong>trialEnd</strong> date (e.g., +14 days from start)</li>
-      <li>After <strong>trialEnd</strong> → auto downgrade to <strong>free</strong> OR show paywall</li>
-      <li>Can upgrade to <strong>pro</strong> anytime (keeps remaining trial days as discount? — optional)</li>
-      <li>One trial per user per application (prevent abuse)</li>
-    </ul>
+    <h4>Storage (client-side)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+// SDK handles all storage automatically (chrome.storage.local or localStorage)
 
-    <h4>Pro (Paid)</h4>
-    <ul class="spec-list">
-      <li>Has <strong>currentPeriodEnd</strong> (billing cycle end)</li>
-      <li>If <code>cancelAtPeriodEnd = true</code> → becomes free after period end</li>
-      <li>If payment fails → status becomes <code>past_due</code>, then <code>canceled</code> after grace period</li>
-      <li>Can be downgraded to free or trial (trial only if never used before)</li>
-    </ul>
-
-    <div class="bg-gray-800 p-4 rounded-lg mt-4">
-      <p class="text-sm text-gray-300 mb-2"><strong>🔐 Access check logic (server-side):</strong></p>
-      <pre class="text-green-400 text-sm overflow-x-auto">
-function hasAccess(userId, appId, requiredPlan) {
-  const license = getLicense(userId, appId);
-  
-  if (requiredPlan === 'free') return true;
-  
-  if (license.plan === 'pro') {
-    return license.status === 'active' && license.currentPeriodEnd > now();
-  }
-  
-  if (license.plan === 'trial') {
-    return license.trialEnd > now();
-  }
-  
-  return false;
+{
+  "2minpay_client_id": "tmp_12345",     // temporary ID generated on first init()
+  "2minpay_jwt": "eyJhbGciOiJIUzI1..."  // JWT token received after payment or restore
 }
       </pre>
     </div>
+
+    <h4>Identity flow</h4>
+    <ul class="spec-list">
+      <li><strong style="color: #a0a5b0;">New user</strong> — SDK generates temporary ID, <code>isPaid()</code> → false</li>
+      <li><strong style="color: #a0a5b0;">Pays</strong> — Stripe sends email to webhook, we link email + temporary ID</li>
+      <li><strong style="color: #a0a5b0;">Restore on new device</strong> — user enters email → magic link → SDK receives JWT → <code>isPaid()</code> → true</li>
+      <li><strong style="color: #a0a5b0;">Same device after reinstall</strong> — SDK generates new temporary ID, but server knows email from previous payment → <code>isPaid()</code> → true (auto-recovery)</li>
+    </ul>
+
+    <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.3); border: 1px solid #2e7d64;">
+      <p style="color: #6ee7b7;" class="text-sm">💡 User email is captured from Stripe checkout. User enters email only once — during restore or first payment.</p>
+    </div>
   </div>
 
-  <!-- 3. API Endpoints -->
-  <div class="card p-6 mb-6">
-    <h3>🔌 3. API Endpoints</h3>
+  <!-- 1. JS SDK -->
+  <div id="js-sdk" class="card p-6 mb-6 anchor-link">
+    <h3>JavaScript SDK</h3>
+    <p class="mb-4">For web apps, Chrome extensions, React, Vue — anything that runs JS.</p>
     
-    <h4>Client-side SDK (in developer's app)</h4>
-    <div class="bg-gray-800 p-4 rounded-lg mb-4">
-      <pre class="text-green-400 text-sm">
-import { checkAccess, showPaywall, getToken } from "sdk-2minpay";
+    <h4>Installation</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">npm install sdk-2minpay</pre>
+    </div>
 
-// Check if user has access
-const hasPro = await checkAccess("pro");
+    <h4>Usage (all you need)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+import { init, isPaid, showPaywall } from "sdk-2minpay";
 
-// Show Stripe checkout
-await showPaywall({ plan: "pro", successUrl: "/welcome" });
+// Initialize (call once)
+await init({ appId: "your-app-id" });
 
-// Get JWT token for backend verification
-const token = getToken();
+// Check if user has access (true = Pro OR active Trial)
+if (!await isPaid()) {
+  // Shows payment modal with Pro, Trial, and "Restore" button
+  await showPaywall();
+}
+
+// User has access — load full app
+loadApp();
       </pre>
     </div>
 
-    <h4>Backend API (for developer's server)</h4>
-    <ul class="spec-list">
-      <li><code>POST /v1/verify</code> — verify JWT token, returns plan and expiration</li>
-      <li><code>POST /v1/webhook/stripe</code> — receive payment events (invoice.paid, subscription.updated, etc.)</li>
-      <li><code>GET /v1/user/:userId</code> — get user's current license status</li>
-    </ul>
+    <h4>Optional methods (for UI)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+// Get full user info (for UI badges, trial countdown, etc.)
+const user = await getUser();
+console.log(user.plan);        // "free" | "pro" | "trial"
+console.log(user.trialEnd);    // timestamp for trial
+console.log(user.email);       // if known
 
-    <div class="bg-gray-800 p-4 rounded-lg mt-2">
-      <pre class="text-green-400 text-sm">
-// Example: backend verification (Java)
-POST /v1/verify
+// Logout (clear local session)
+await logout();
+      </pre>
+    </div>
+
+    <h4>User object</h4>
+    <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+{
+  isPaid: true,                 // same as isPaid()
+  plan: "trial",                // "free" | "pro" | "trial"
+  email: "user@example.com",    // if captured
+  trialEnd: 1746547200,         // timestamp for trial
+  currentPeriodEnd: null,       // timestamp for pro
+}
+      </pre>
+    </div>
+
+    <h4>SDK methods summary</h4>
+    <ul class="spec-list">
+      <li><code>init({ appId })</code> — required first call, generates temporary ID</li>
+      <li><code>isPaid()</code> → <code>true/false</code> — main method, checks access</li>
+      <li><code>showPaywall()</code> — shows modal with Pro, Trial, and Restore button</li>
+      <li><code>getUser()</code> → <code>User</code> — for UI (plan, email, dates)</li>
+      <li><code>logout()</code> — clears local JWT</li>
+    </ul>
+  </div>
+
+  <!-- 2. REST API -->
+  <div id="api" class="card p-6 mb-6 anchor-link">
+    <h3>REST API (for backend verification)</h3>
+    <p class="mb-4">For Java, Python, Go, Rust, PHP — any language.</p>
+
+    <h4>Base URL</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">https://api.2minpay.com/v1</pre>
+    </div>
+
+    <h4>Verify JWT token</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+POST /verify
 Authorization: Bearer &lt;jwt_token&gt;
 
 Response:
 {
   "valid": true,
   "plan": "pro",
-  "expiresAt": "2026-05-06T12:00:00Z"
+  "status": "active",
+  "expires_at": "2026-05-06T12:00:00Z"
+}
+      </pre>
+    </div>
+
+    <p class="mt-2" style="color: #8a8f9a;">
+      JWT tokens are short-lived and automatically refreshed by the SDK. No manual token management needed.
+    </p>
+
+    <h4>Get user by email (for webhooks)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+GET /user?email=user@example.com
+Authorization: Bearer &lt;api_key&gt;
+
+Response:
+{
+  "id": "usr_123",
+  "plan": "pro",
+  "status": "active",
+  "current_period_end": 1746547200
 }
       </pre>
     </div>
   </div>
 
-  <!-- 4. Data Storage -->
-  <div class="card p-6 mb-6">
-    <h3>💾 4. Data Storage (Cloudflare D1 / PostgreSQL)</h3>
+  <!-- 3. Pricing -->
+  <div id="pricing" class="card p-6 mb-6 anchor-link">
+    <h3>Pricing</h3>
     
-    <pre class="text-green-400 text-sm overflow-x-auto bg-gray-800 p-4 rounded-lg">
--- Applications table
+    <ul class="spec-list">
+      <li>2MinPay takes a small commission per transaction — exact percentage TBD, will be announced before launch</li>
+    </ul>
+    
+    <p class="mt-3" style="color: #8a8f9a;">
+      🔐 Payments are processed securely via Stripe. 2MinPay never stores card data or payment details.
+    </p>
+    
+    <p class="mt-2" style="color: #8a8f9a;">
+      Developers connect their own Stripe account once. Payments go directly to them. 2MinPay never touches your money.
+    </p>
+  </div>
+
+  <!-- 4. Webhooks -->
+  <div id="webhook" class="card p-6 mb-6 anchor-link">
+    <h3>Webhooks</h3>
+    <p class="mb-4">We notify your backend when subscription changes.</p>
+
+    <div class="bg-gray-800 p-3 rounded-lg mb-4">
+      <pre style="color: #6ee7b7 !important;" class="text-sm">
+POST /your-webhook-endpoint
+{
+  "event": "subscription.updated",
+  "email": "user@example.com",
+  "plan": "pro",
+  "status": "active",
+  "currentPeriodEnd": 1746547200
+}
+      </pre>
+    </div>
+
+    <ul class="spec-list">
+      <li><code>subscription.created</code> — first payment</li>
+      <li><code>subscription.updated</code> — renewed, upgraded, canceled</li>
+      <li><code>subscription.deleted</code> — expired or deleted</li>
+      <li><code>trial.started</code> — trial activated</li>
+      <li><code>trial.ended</code> — trial expired</li>
+    </ul>
+  </div>
+
+  <!-- 5. Database Schema -->
+  <div id="database" class="card p-6 mb-6 anchor-link">
+    <h3>Database Schema (Cloudflare D1 / PostgreSQL)</h3>
+    
+    <pre class="text-sm overflow-x-auto bg-gray-800 p-4 rounded-lg" style="color: #6ee7b7 !important;">
+-- Developer accounts
+CREATE TABLE developers (
+  id TEXT PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  stripe_account_id TEXT,
+  api_key TEXT UNIQUE,
+  created_at INTEGER
+);
+
+-- Applications
 CREATE TABLE apps (
   id TEXT PRIMARY KEY,
   developer_id TEXT NOT NULL,
   name TEXT NOT NULL,
   stripe_product_id TEXT,
   public_key TEXT,
-  secret_key TEXT
+  secret_key TEXT,
+  FOREIGN KEY (developer_id) REFERENCES developers(id)
 );
 
--- Users (scoped to app)
+-- Users (email is key for cross-device sync)
 CREATE TABLE users (
   id TEXT PRIMARY KEY,
   app_id TEXT NOT NULL,
-  user_id TEXT NOT NULL, -- developer's internal user ID
-  email TEXT,
-  created_at INTEGER
+  email TEXT NOT NULL,
+  temp_id TEXT,                      -- temporary ID from SDK
+  created_at INTEGER,
+  UNIQUE(app_id, email)
 );
 
 -- Licenses
@@ -313,43 +484,33 @@ CREATE TABLE licenses (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
   app_id TEXT NOT NULL,
-  plan TEXT NOT NULL, -- 'free', 'pro', 'trial'
-  status TEXT NOT NULL, -- 'active', 'expired', 'canceled', 'past_due'
+  plan TEXT NOT NULL,                -- 'free', 'pro', 'trial'
+  status TEXT NOT NULL,              -- 'active', 'expired', 'canceled', 'past_due'
   current_period_end INTEGER,
   trial_end INTEGER,
+  paid_at INTEGER,
+  trial_started_at INTEGER,
   stripe_subscription_id TEXT,
-  cancel_at_period_end BOOLEAN
+  cancel_at_period_end BOOLEAN,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (app_id) REFERENCES apps(id)
 );
     </pre>
   </div>
 
-  <!-- 5. Payment Flow -->
-  <div class="card p-6 mb-6">
-    <h3>💳 5. Payment Flow (Stripe)</h3>
-    <ul class="spec-list">
-      <li>Developer connects Stripe account via OAuth (Stripe Connect)</li>
-      <li>2MinPay creates Product & Price in developer's Stripe account</li>
-      <li>When user clicks "Upgrade", 2MinPay creates Stripe Checkout Session</li>
-      <li>After successful payment, Stripe sends <code>checkout.session.completed</code> webhook</li>
-      <li>2MinPay updates license: <code>plan = 'pro'</code>, <code>currentPeriodEnd = now + interval</code></li>
-      <li>2MinPay generates JWT token for the user</li>
-      <li>Application receives webhook (optional) or client refreshes token</li>
-    </ul>
-  </div>
-
-  <!-- 6. Security Notes -->
+  <!-- 6. Security -->
   <div class="card p-6">
-    <h3>🔒 6. Security & Best Practices</h3>
+    <h3>Security</h3>
     <ul class="spec-list">
-      <li><strong>Never trust client-side checks alone.</strong> Always verify JWT token on your backend.</li>
-      <li>JWT tokens are signed with 2MinPay's private key — verify with our public key.</li>
-      <li>Tokens expire. Refresh by calling <code>checkAccess()</code> again.</li>
-      <li>Store <code>userId</code> as opaque string — we don't need to know internal IDs.</li>
-      <li>Use webhooks to sync subscription status changes (canceled, expired, renewed).</li>
+      <li><code>isPaid()</code> checks license status on 2MinPay servers — the response cannot be faked</li>
+      <li>If a user removes the <code>if (!isPaid())</code> check from your code — they can access the feature. This is true for any client-side product.</li>
+      <li>2MinPay handles payment verification, license storage, and cross-device sync. You don't need a backend.</li>
+      <li>If you already have a backend, we provide JWT tokens for additional server-side verification (optional).</li>
+      <li>JWT tokens are short-lived and automatically refreshed by the SDK. No manual token management needed.</li>
     </ul>
     
-    <div class="mt-4 p-3 bg-red-900/30 border border-red-500/50 rounded-lg">
-      <p class="text-red-300 text-sm">⚠️ Warning: Client-side check is for UI convenience only. All protected data must be served from your backend after verifying the token.</p>
+    <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.3); border: 1px solid #2e7d64;">
+      <p style="color: #6ee7b7;" class="text-sm">✅ For most extensions and apps, client-side <code>isPaid()</code> is enough. Protected content is only shown when user has paid or active trial.</p>
     </div>
   </div>
 
@@ -359,9 +520,9 @@ CREATE TABLE licenses (
 </div>
 
 <footer class="text-center text-sm py-10">
-  <div class="text-gray-500">
+  <div style="color: #6b7280;">
     &copy; 2026 
-    <a href="https://ievgenii.com" target="_blank" class="text-white hover:text-gray-300 transition">
+    <a href="https://ievgenii.com" target="_blank" style="color: #8a8f9a;" class="hover:text-white transition">
       ievgenii.com
     </a>
   </div>
