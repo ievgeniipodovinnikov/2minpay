@@ -59,6 +59,21 @@
       background: #e5e5e5;
     }
 
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
     .btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -119,7 +134,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
-<link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
 <body class="text-white">
 
@@ -133,7 +148,10 @@
     Monetize your app, extension or SaaS instantly. No backend. No hassle.
   </p>
 
-  <a href="#waitlist" class="btn">Get early access</a>
+  <div class="flex gap-4 justify-center">
+    <a href="#waitlist" class="btn">Get early access</a>
+    <a href="service-manual.html" class="btn-outline">📖 Service manual</a>
+  </div>
 </header>
 
 <!-- CORE BLOCK -->
@@ -170,24 +188,23 @@
   </section>
 
   <!-- CODE PREVIEW -->
-<!-- CODE PREVIEW -->
-<section class="px-6 py-8">
-  <div class="code-wrapper">
-    <div class="card code-card p-6">
-      <pre class="text-green-400 text-sm">
+  <section class="px-6 py-8">
+    <div class="code-wrapper">
+      <div class="card code-card p-6">
+        <pre class="text-green-400 text-sm">
 import { checkAccess } from "sdk-2minpay";
 
 if (!(await checkAccess("pro"))) {
   showPaywall();
 }     </pre>
-      <div class="mt-4 pt-3 border-t border-gray-700 text-center">
-        <p class="text-gray-400 text-xs">
-          ✓ Server-side license verification via 2MinPay API
-        </p>
+        <div class="mt-4 pt-3 border-t border-gray-700 text-center">
+          <p class="text-gray-400 text-xs">
+            ✓ Server-side license verification via 2MinPay API
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- TRUST -->
   <section class="text-center py-6">
@@ -234,7 +251,10 @@ if (!(await checkAccess("pro"))) {
 
 <!-- FOOTER -->
 <footer class="text-center text-sm py-10">
-  <div class="text-gray-500">
+  <div>
+    <a href="service-manual.html" class="text-gray-400 hover:text-white transition">Service manual</a>
+  </div>
+  <div class="mt-4 text-gray-500">
     &copy; 2026 
     <a href="https://ievgenii.com" target="_blank" class="text-white hover:text-gray-300 transition">
       ievgenii.com
@@ -288,5 +308,4 @@ if (!(await checkAccess("pro"))) {
 </script>
 
 </body>
-
 </html>
