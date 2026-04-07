@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2MinPay — Terms of Service</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(45deg, #00c9a7, #00f2fe, #00ff87, #0f2027);
+      background-size: 400% 400%;
+      animation: gradientAnimation 30s ease infinite;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      background-color: #000000;
+    }
+
+    footer {
+      color: #6b7280;
+      margin-top: auto;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background-color: #000000;
+      color: #8a8f9a;
+      border-radius: 1rem;
+    }
+
+    .btn {
+      background: white;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transition: 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.875rem;
+    }
+
+    .btn:hover {
+      background: #e5e5e5;
+    }
+
+    .glass-main {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 2rem;
+      margin: 2rem auto;
+      padding: 2rem 1.5rem;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    @media (min-width: 768px) {
+      .glass-main {
+        padding: 2.5rem 2rem;
+      }
+    }
+
+    h1 {
+      color: #b0b5c0;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #6ee7b7;
+    }
+
+    p {
+      color: #8a8f9a;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .link {
+      color: #6ee7b7;
+      text-decoration: none;
+      border-bottom: 1px dotted #2e7d64;
+    }
+
+    .link:hover {
+      color: #a7f3d0;
+      border-bottom-color: #6ee7b7;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      color: #8a8f9a;
+      margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+      color: #6b7280;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .content-wrapper {
+      padding: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .content-wrapper {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="text-center py-12 px-4">
+  <h1 class="text-4xl font-bold mb-2" style="color: #b0b5c0;">2MinPay</h1>
+  <p class="mb-6" style="color: #8a8f9a;">Terms of Service</p>
+  <a href="index.html" class="btn">← Back to main page</a>
+</header>
+
+<div class="glass-main">
+  <div class="card">
+    <div class="content-wrapper">
+      <p style="color: #a0a5b0; margin-bottom: 1.5rem;">
+        By using 2MinPay ("we", "us", "our"), you ("Developer", "you") agree to these Terms.
+      </p>
+
+      <h2>1. Service Description</h2>
+      <p>2MinPay provides a paywall and license management service for developers. We handle payments via Stripe, license verification, and cross-device sync through magic links.</p>
+      <p>Our SDK allows you to add paywalls to your applications with minimal code. License status is checked on our servers and returned to your application.</p>
+
+      <h2>2. Eligibility</h2>
+      <p>You must be at least 18 years old to use 2MinPay. By using our service, you represent that you meet this requirement.</p>
+      <p>You are responsible for your application's compliance with all applicable laws, including consumer protection, data privacy, and any other regulations relevant to your product.</p>
+
+      <h2>3. Payments & Fees</h2>
+      <p>2MinPay charges a commission per successful transaction processed through our service. The exact percentage will be announced before launch and may be updated with 30 days' notice.</p>
+      <p>Payments are processed through Stripe. You must connect your own Stripe account to receive payouts. Stripe's fees apply separately.</p>
+      <p>You are responsible for any taxes, VAT, or other charges applicable to your earnings.</p>
+
+      <h2>4. Your Responsibilities</h2>
+      <p>You are responsible for:</p>
+      <ul>
+        <li>Implementing 2MinPay SDK correctly in your application</li>
+        <li>Ensuring your application complies with all applicable laws</li>
+        <li>Providing accurate information when registering your application</li>
+        <li>Maintaining the security of your API keys and Stripe account</li>
+        <li>Handling refunds and customer support for your product</li>
+      </ul>
+
+      <h2>5. Data & Privacy</h2>
+      <p>We collect and store:</p>
+      <ul>
+        <li>Developer email and Stripe account information</li>
+        <li>Application configuration (plans, pricing, etc.)</li>
+        <li>End-user email addresses (captured from Stripe or during restore flow)</li>
+        <li>License status and subscription information</li>
+      </ul>
+      <p>We do <strong>not</strong> store credit card information — all payments are handled by Stripe.</p>
+      <p>We do not sell or share user data with third parties except as required to provide the service (e.g., Stripe for payments).</p>
+      <p>For more details, see our <a href="privacy.html" class="link">Privacy Policy</a>.</p>
+
+      <h2>6. Prohibited Use</h2>
+      <p>You may not use 2MinPay for:</p>
+      <ul>
+        <li>Illegal products or services</li>
+        <li>Fraudulent or deceptive applications</li>
+        <li>Adult content without age verification</li>
+        <li>Any product that violates Stripe's prohibited businesses list</li>
+        <li>Attempting to bypass or hack our license verification system</li>
+      </ul>
+
+      <h2>7. Service Availability & Limitations</h2>
+      <p>We strive to keep 2MinPay available 24/7, but we do not guarantee uninterrupted service. We may perform maintenance with reasonable notice.</p>
+      <p>We are not responsible for any downtime or data loss caused by factors outside our control (e.g., Stripe outages, DNS issues, user's internet).</p>
+      <p>We reserve the right to limit or terminate access to any developer who abuses the service.</p>
+
+      <h2>8. Termination</h2>
+      <p>You may stop using 2MinPay at any time. Your end-users' licenses will continue to work until their current period ends, but no new verifications will be processed.</p>
+      <p>We may suspend or terminate your access if you violate these Terms, with notice when reasonably possible.</p>
+      <p>Upon termination, we will delete your developer account and associated data within 30 days, unless required to retain it by law.</p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, 2MinPay is not liable for any indirect, incidental, or consequential damages arising from your use of our service.</p>
+      <p>Our total liability is limited to the fees you paid us in the 12 months preceding the claim.</p>
+      <p>We are not responsible for lost revenue, lost users, or damage to your business reputation.</p>
+
+      <h2>10. Disclaimer of Warranties</h2>
+      <p>2MinPay is provided "as is" without warranties of any kind. We do not guarantee that our service will be error-free, secure, or uninterrupted.</p>
+      <p>You acknowledge that client-side license checks can be bypassed by determined users, as is true for any client-side product.</p>
+
+      <h2>11. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Material changes will be announced via email or through your dashboard at least 14 days in advance.</p>
+      <p>Continued use of 2MinPay after changes constitute acceptance of the new Terms.</p>
+
+      <h2>12. Governing Law</h2>
+      <p>These Terms are governed by the laws of [Your Country/State]. Any disputes shall be resolved in the courts of [Your Location].</p>
+
+      <h2>13. Contact</h2>
+      <p>For any questions about these Terms, contact us at: <a href="mailto:contact@2minpay.com" class="link">contact@2minpay.com</a></p>
+
+      <div class="last-updated">
+        Last updated: April 6, 2026
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="index.html" class="btn">← Back to main page</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center text-sm py-10">
+  <div class="flex justify-center gap-4">
+    <a href="service-manual.html" class="text-gray-400 hover:text-white transition">Service manual</a>
+    <span class="text-gray-600">|</span>
+    <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+    <span class="text-gray-600">|</span>
+    <a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a>
+  </div>
+  <div class="mt-4 text-gray-500">
+    &copy; 2026 
+    <a href="https://ievgenii.com" target="_blank" class="text-white hover:text-gray-300 transition">
+      ievgenii.com
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
