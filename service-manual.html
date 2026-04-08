@@ -220,6 +220,10 @@
         overflow-x: auto;
       }
     }
+    .comment {
+       color: #6b7280 !important;
+        font-style: italic;
+    }
   </style>
 </head>
 
@@ -237,13 +241,16 @@
   <div class="card p-6 mb-6">
     <h3>What we offer</h3>
     <p class="mb-4 text-lg" style="color: #a0a5b0;">
-      Add a paywall to any app in 2 minutes — without building auth, payments, or license backend.
+      Add a paywall to any app in 2 minutes and start charging today — without building auth, payments, or license backend.
     </p>
-    <p class="mb-3">
-      • <a href="#js-sdk" class="link">JavaScript SDK</a> — 3 lines of code
+    <p class="mb-4" style="color:#8a8f9a;">
+  Stop building billing, auth and license logic from scratch. You don't need it anymore.
     </p>
-    <p class="mb-3">
-      • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
+ <p class="mb-3">
+  • <a href="#js-sdk" class="link">JavaScript SDK</a> — add paywall in 3 lines
+    </p>
+      <p class="mb-3">
+  • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
     </p>
   </div>
 
@@ -251,7 +258,7 @@
   <div class="card p-6 mb-6" style="background-color: rgba(17, 94, 74, 0.3);">
     <h3 style="color: #e5e5e5;">What you don't need anymore</h3>
     <ul class="spec-list">
-      <li style="color: #d4d4d4;">No backend for payments</li>
+      <li style="color: #d4d4d4;">No backend required from you</li>
       <li style="color: #d4d4d4;">No Stripe integration code</li>
       <li style="color: #d4d4d4;">No auth system for license verification</li>
       <li style="color: #d4d4d4;">No license storage or database</li>
@@ -269,24 +276,24 @@
       <pre style="color: #6ee7b7 !important;" class="text-sm">npm install sdk-2minpay</pre>
     </div>
 
-    <h4>Usage (all you need)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
+<h4>Usage - this is your entire paywall logic</h4>
+<div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
+  <pre style="color: #6ee7b7 !important;" class="text-sm">
 import { init, isPaid, showPaywall } from "sdk-2minpay";
 
-// Initialize SDK — shows Stripe onboarding if app not configured yet
+<span class="comment">// Initialize SDK — first run: connect Stripe, set monthly price</span>
 await init();
 
-// Check if user has access
+<span class="comment">// Check if user has access</span>
 if (!await isPaid()) {
-  // Shows Stripe payment modal
+  <span class="comment">// Shows Stripe payment modal</span>
   await showPaywall();
 }
 
-// User has access — load full app
+<span class="comment">// User has access — load full app</span>
 loadApp();
-      </pre>
-    </div>
+  </pre>
+</div>
 
     <h4>SDK methods</h4>
     <ul class="spec-list">
@@ -308,6 +315,7 @@ loadApp();
     
     <ul class="spec-list">
       <li>2MinPay takes <strong style="color: #a0a5b0;">5% + $0.30</strong> per transaction</li>
+      <li>Powered by Stripe. You keep full control of your money.</li>
       <li>You set your monthly price (e.g., $9.99/month)</li>
       <li>Payments go directly to your Stripe account</li>
     </ul>
@@ -318,7 +326,8 @@ loadApp();
     <h3>🔒 Security</h3>
     <ul class="spec-list">
       <li><code>isPaid()</code> checks license status on 2MinPay servers — the response cannot be faked</li>
-      <li>If a user removes the <code>if (!isPaid())</code> check — they can access the feature. This is true for any client-side product.</li>
+      <li>License is verified on our servers.</li>
+      <li>Client-side checks can be bypassed — this is true for any JS app.</li>
       <li>2MinPay handles payment verification, license storage, and cross-device sync. You don't need a backend.</li>
     </ul>
     
