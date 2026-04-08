@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2MinPay — Service manual</title>
+  <title>2MinPay — Service Manual</title>
 
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
@@ -201,7 +201,6 @@
       border-bottom-color: #6ee7b7;
     }
 
-    /* Fix for mobile code blocks */
     .overflow-x-auto {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -241,11 +240,11 @@
       Add a paywall to any app in 2 minutes — without building auth, payments, or license backend.
     </p>
     <p class="mb-3">
-      • <a href="#js-sdk" class="link">JavaScript SDK</a> — two lines of code to add payments
+      • <a href="#js-sdk" class="link">JavaScript SDK</a> — 3 lines of code
     </p>
-    <p class="mb-3">
+    <!-- <p class="mb-3">
       • <a href="#api" class="link">REST API</a> — verify licenses from any backend
-    </p>
+    </p> -->
     <p class="mb-3">
       • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
     </p>
@@ -263,56 +262,9 @@
     </ul>
   </div>
 
-  <!-- HOW IT WORKS — SIMPLE -->
-  <div class="card p-6 mb-6">
-    <h3>How it works — simple</h3>
-    <ul class="spec-list">
-      <li>1. User opens your app → SDK calls <code>isPaid()</code> → 2MinPay checks license</li>
-      <li>2. If not paid → <code>showPaywall()</code> → Stripe checkout</li>
-      <li>3. After payment → SDK gets JWT → <code>isPaid()</code> returns true</li>
-      <li>4. On new device → user clicks "Restore" → email → magic link → access restored</li>
-    </ul>
-  </div>
-
-  <!-- HOW IT WORKS — DETAILED -->
-  <div id="how-it-works" class="card p-6 mb-6 anchor-link">
-    <h3>How it works — detailed</h3>
-    
-    <h4>Access logic</h4>
-    <ul class="spec-list">
-      <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">true</strong> for: Pro (active) OR Trial (not expired)</li>
-      <li><code>isPaid()</code> returns <strong style="color: #a0a5b0;">false</strong> for: Free, expired trial, canceled pro</li>
-      <li>Trial: one per user per app</li>
-    </ul>
-
-    <h4>Storage (client-side)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-// SDK handles all storage automatically (chrome.storage.local or localStorage)
-
-{
-  "2minpay_client_id": "tmp_12345",     // temporary ID generated on first init()
-  "2minpay_jwt": "eyJhbGciOiJIUzI1..."  // JWT token received after payment or restore
-}
-      </pre>
-    </div>
-
-    <h4>Identity flow</h4>
-    <ul class="spec-list">
-      <li><strong style="color: #a0a5b0;">New user</strong> — SDK generates temporary ID, <code>isPaid()</code> → false</li>
-      <li><strong style="color: #a0a5b0;">Pays</strong> — Stripe sends email to webhook, we link email + temporary ID</li>
-      <li><strong style="color: #a0a5b0;">Restore on new device</strong> — user enters email → magic link → SDK receives JWT → <code>isPaid()</code> → true</li>
-      <li><strong style="color: #a0a5b0;">Same device after reinstall</strong> — SDK generates new temporary ID, but server knows email from previous payment → <code>isPaid()</code> → true (auto-recovery)</li>
-    </ul>
-
-    <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.3); border: 1px solid #2e7d64;">
-      <p style="color: #6ee7b7;" class="text-sm">💡 User email is captured from Stripe checkout. User enters email only once — during restore or first payment.</p>
-    </div>
-  </div>
-
   <!-- 1. JS SDK -->
   <div id="js-sdk" class="card p-6 mb-6 anchor-link">
-    <h3>JavaScript SDK</h3>
+    <h3>📦 JavaScript SDK</h3>
     <p class="mb-4">For web apps, Chrome extensions, React, Vue — anything that runs JS.</p>
     
     <h4>Installation</h4>
@@ -325,12 +277,12 @@
       <pre style="color: #6ee7b7 !important;" class="text-sm">
 import { init, isPaid, showPaywall } from "sdk-2minpay";
 
-// Initialize (call once)
-await init({ appId: "your-app-id" });
+// Initialize SDK — shows Stripe onboarding if app not configured yet
+await init();
 
 // Check if user has access
 if (!await isPaid()) {
-  // Shows payment modal with Pro, Trial, and "Restore" button
+  // Shows Stripe payment modal
   await showPaywall();
 }
 
@@ -339,197 +291,61 @@ loadApp();
       </pre>
     </div>
 
-    <h4>Optional methods (for UI)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-// Get full user info (for UI badges, trial countdown, etc.)
-const user = await getUser();
-console.log(user.plan);        // "free" | "pro" | "trial"
-console.log(user.trialEnd);    // timestamp for trial
-console.log(user.email);       // if known
-
-// Logout (clear local session)
-await logout();
-      </pre>
-    </div>
-
-    <h4>User object</h4>
-    <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-{
-  isPaid: true,                 // same as isPaid()
-  plan: "trial",                // "free" | "pro" | "trial"
-  email: "user@example.com",    // if captured
-  trialEnd: 1746547200,         // timestamp for trial
-  currentPeriodEnd: null,       // timestamp for pro
-}
-      </pre>
-    </div>
-
-    <h4>SDK methods summary</h4>
+    <h4>SDK methods</h4>
     <ul class="spec-list">
-      <li><code>init({ appId })</code> — required first call, generates temporary ID</li>
-      <li><code>isPaid()</code> → <code>true/false</code> — main method, checks access</li>
-      <li><code>showPaywall()</code> — shows modal with Pro, Trial, and Restore button</li>
-      <li><code>getUser()</code> → <code>User</code> — for UI (plan, email, dates)</li>
-      <li><code>logout()</code> — clears local JWT</li>
+      <li><code>init()</code> — initializes SDK, shows developer onboarding on first run</li>
+      <li><code>isPaid()</code> → <code>true/false</code> — checks if user has active access</li>
+      <li><code>showPaywall()</code> — shows Stripe checkout modal</li>
     </ul>
   </div>
 
   <!-- 2. REST API -->
-  <div id="api" class="card p-6 mb-6 anchor-link">
-    <h3>REST API (for backend verification)</h3>
-    <p class="mb-4">For Java, Python, Go, Rust, PHP — any language.</p>
+  <!-- <div id="api" class="card p-6 mb-6 anchor-link">
+    <h3>🔌 REST API</h3>
+    <p class="mb-4">For backend verification — Java, Python, Go, Rust, PHP, any language.</p>
 
     <h4>Base URL</h4>
     <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">https://api.2minpay.com/v1</pre>
     </div>
 
-    <h4>Verify JWT token</h4>
+    <h4>Check subscription by email</h4>
     <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">
-POST /verify
-Authorization: Bearer &lt;jwt_token&gt;
+GET /isPaid?email=user@example.com
 
 Response:
 {
-  "valid": true,
+  "isPaid": true,
   "plan": "pro",
-  "status": "active",
-  "expires_at": "2026-05-06T12:00:00Z"
+  "expiresAt": 1746547200
 }
       </pre>
     </div>
 
-    <p class="mt-2" style="color: #8a8f9a;">
-      JWT tokens are short-lived and automatically refreshed by the SDK. No manual token management needed.
+    <p class="text-sm mt-2" style="color: #8a8f9a;">
+      Pass email from your authenticated user. Returns subscription status.
     </p>
-
-    <h4>Get user by email (for webhooks)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-GET /user?email=user@example.com
-Authorization: Bearer &lt;api_key&gt;
-
-Response:
-{
-  "id": "usr_123",
-  "plan": "pro",
-  "status": "active",
-  "current_period_end": 1746547200
-}
-      </pre>
-    </div>
-  </div>
+  </div> -->
 
   <!-- 3. Pricing -->
   <div id="pricing" class="card p-6 mb-6 anchor-link">
-    <h3>Pricing</h3>
+    <h3>💰 Pricing</h3>
     
     <ul class="spec-list">
-      <li>2MinPay takes a small commission per transaction — exact percentage TBD, will be announced before launch</li>
-    </ul>
-    
-    <p class="mt-3" style="color: #8a8f9a;">
-      🔐 Payments are processed securely via Stripe. 2MinPay never stores card data or payment details.
-    </p>
-    
-    <p class="mt-2" style="color: #8a8f9a;">
-      Developers connect their own Stripe account once. Payments go directly to them. 2MinPay never touches your money.
-    </p>
-  </div>
-
-  <!-- 4. Webhooks -->
-  <div id="webhook" class="card p-6 mb-6 anchor-link">
-    <h3>Webhooks</h3>
-    <p class="mb-4">We notify your backend when subscription changes.</p>
-
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-POST /your-webhook-endpoint
-{
-  "event": "subscription.updated",
-  "email": "user@example.com",
-  "plan": "pro",
-  "status": "active",
-  "currentPeriodEnd": 1746547200
-}
-      </pre>
-    </div>
-
-    <ul class="spec-list">
-      <li><code>subscription.created</code> — first payment</li>
-      <li><code>subscription.updated</code> — renewed, upgraded, canceled</li>
-      <li><code>subscription.deleted</code> — expired or deleted</li>
-      <li><code>trial.started</code> — trial activated</li>
-      <li><code>trial.ended</code> — trial expired</li>
+      <li>2MinPay takes <strong style="color: #a0a5b0;">5% + $0.30</strong> per transaction</li>
+      <li>You set your monthly price (e.g., $9.99/month)</li>
+      <li>Payments go directly to your Stripe account</li>
     </ul>
   </div>
 
-  <!-- 5. Database Schema -->
-  <div id="database" class="card p-6 mb-6 anchor-link">
-    <h3>Database Schema (Cloudflare D1 / PostgreSQL)</h3>
-    
-    <pre class="text-sm overflow-x-auto bg-gray-800 p-4 rounded-lg" style="color: #6ee7b7 !important;">
--- Developer accounts
-CREATE TABLE developers (
-  id TEXT PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
-  stripe_account_id TEXT,
-  api_key TEXT UNIQUE,
-  created_at INTEGER
-);
-
--- Applications
-CREATE TABLE apps (
-  id TEXT PRIMARY KEY,
-  developer_id TEXT NOT NULL,
-  name TEXT NOT NULL,
-  stripe_product_id TEXT,
-  public_key TEXT,
-  secret_key TEXT,
-  FOREIGN KEY (developer_id) REFERENCES developers(id)
-);
-
--- Users (email is key for cross-device sync)
-CREATE TABLE users (
-  id TEXT PRIMARY KEY,
-  app_id TEXT NOT NULL,
-  email TEXT NOT NULL,
-  temp_id TEXT,                      -- temporary ID from SDK
-  created_at INTEGER,
-  UNIQUE(app_id, email)
-);
-
--- Licenses
-CREATE TABLE licenses (
-  id TEXT PRIMARY KEY,
-  user_id TEXT NOT NULL,
-  app_id TEXT NOT NULL,
-  plan TEXT NOT NULL,                -- 'free', 'pro', 'trial'
-  status TEXT NOT NULL,              -- 'active', 'expired', 'canceled', 'past_due'
-  current_period_end INTEGER,
-  trial_end INTEGER,
-  paid_at INTEGER,
-  trial_started_at INTEGER,
-  stripe_subscription_id TEXT,
-  cancel_at_period_end BOOLEAN,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (app_id) REFERENCES apps(id)
-);
-    </pre>
-  </div>
-
-  <!-- 6. Security -->
+  <!-- 4. Security -->
   <div class="card p-6">
-    <h3>Security</h3>
+    <h3>🔒 Security</h3>
     <ul class="spec-list">
       <li><code>isPaid()</code> checks license status on 2MinPay servers — the response cannot be faked</li>
-      <li>If a user removes the <code>if (!isPaid())</code> check from your code — they can access the feature. This is true for any client-side product.</li>
+      <li>If a user removes the <code>if (!isPaid())</code> check — they can access the feature. This is true for any client-side product.</li>
       <li>2MinPay handles payment verification, license storage, and cross-device sync. You don't need a backend.</li>
-      <li>If you already have a backend, we provide JWT tokens for additional server-side verification (optional).</li>
-      <li>JWT tokens are short-lived and automatically refreshed by the SDK. No manual token management needed.</li>
     </ul>
     
     <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.3); border: 1px solid #2e7d64;">
@@ -543,7 +359,14 @@ CREATE TABLE licenses (
 </div>
 
 <footer class="text-center text-sm py-10">
-  <div style="color: #6b7280;">
+  <div class="flex justify-center gap-4">
+    <a href="index.html" class="text-gray-400 hover:text-white transition">Home</a>
+    <span class="text-gray-600">|</span>
+    <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition">Terms</a>
+    <span class="text-gray-600">|</span>
+    <a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a>
+  </div>
+  <div class="mt-4 text-gray-500">
     &copy; 2026 
     <a href="https://ievgenii.com" target="_blank" style="color: #8a8f9a;" class="hover:text-white transition">
       ievgenii.com
