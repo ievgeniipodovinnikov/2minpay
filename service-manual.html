@@ -242,9 +242,6 @@
     <p class="mb-3">
       • <a href="#js-sdk" class="link">JavaScript SDK</a> — 3 lines of code
     </p>
-    <!-- <p class="mb-3">
-      • <a href="#api" class="link">REST API</a> — verify licenses from any backend
-    </p> -->
     <p class="mb-3">
       • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
     </p>
@@ -297,36 +294,13 @@ loadApp();
       <li><code>isPaid()</code> → <code>true/false</code> — checks if user has active access</li>
       <li><code>showPaywall()</code> — shows Stripe checkout modal</li>
     </ul>
+
+    <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.2);">
+  <p class="text-sm" style="color: #d4d4d4;">
+    <strong class="text-white">Developer gets paid access</strong> — the Stripe Connect account owner receives a permanent subscription.
+  </p>
+    </div>
   </div>
-
-  <!-- 2. REST API -->
-  <!-- <div id="api" class="card p-6 mb-6 anchor-link">
-    <h3>🔌 REST API</h3>
-    <p class="mb-4">For backend verification — Java, Python, Go, Rust, PHP, any language.</p>
-
-    <h4>Base URL</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">https://api.2minpay.com/v1</pre>
-    </div>
-
-    <h4>Check subscription by email</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-GET /isPaid?email=user@example.com
-
-Response:
-{
-  "isPaid": true,
-  "plan": "pro",
-  "expiresAt": 1746547200
-}
-      </pre>
-    </div>
-
-    <p class="text-sm mt-2" style="color: #8a8f9a;">
-      Pass email from your authenticated user. Returns subscription status.
-    </p>
-  </div> -->
 
   <!-- 3. Pricing -->
   <div id="pricing" class="card p-6 mb-6 anchor-link">
