@@ -61,8 +61,7 @@
 
     <h4>Usage - Web App (with bundler)</h4>
     <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-import { init, isPaid, showPaywall } from "sdk-2minpay";
+      <pre style="color: #6ee7b7 !important;" class="text-sm">import { init, isPaid, showPaywall } from "sdk-2minpay";
 
 <span class="comment">// Initialize SDK — first run: connect Stripe, set monthly price</span>
 await init();
@@ -74,37 +73,31 @@ if (!await isPaid()) {
 }
 
 <span class="comment">// User has access — load full app</span>
-loadApp();
-      </pre>
+loadApp();</pre>
     </div>
 
     <h4>Usage - Chrome Extension (without bundler)</h4>
-    <div class="highlight">
-      <p class="text-sm mb-2" style="color: #d4d4d4;">For Chrome Extensions, use the local file approach:</p>
-    </div>
     <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-      <pre style="color: #6ee7b7 !important;" class="text-sm">
-<span class="comment">// 1. Copy SDK file to your extension folder</span>
-<span class="comment">// cp node_modules/sdk-2minpay/dist/sdk-2minpay.js ./</span>
+      <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">// 1. Copy the ESM file into your extension folder:</span>
+<span class="comment">// cp node_modules/sdk-2minpay/dist/index.js ./sdk-2minpay.esm.js</span>
 
-<span class="comment">// 2. In popup.html:</span>
-&lt;script type="module" src="sdk-2minpay.js"&gt;&lt;/script&gt;
+<span class="comment">// 2. In manifest.json (Manifest V3), allow the API host:</span>
+<span class="comment">// "host_permissions": [ "https://api.2minpay.com/*" ]</span>
+
+<span class="comment">// 3. In popup.html — one module entry (popup imports the SDK):</span>
 &lt;script type="module" src="popup.js"&gt;&lt;/script&gt;
 
-<span class="comment">// 3. In popup.js:</span>
-import TwoMinPay from './sdk-2minpay.js';
+<span class="comment">// 4. In popup.js — same API as the web example:</span>
+import { init, isPaid, showPaywall } from './sdk-2minpay.esm.js';
 
-const paywall = new TwoMinPay();
-await paywall.init();
+await init();
 
-if (!await paywall.isPaid()) {
-  await paywall.showPaywall();
-} else {
-  <span class="comment">// Show Pro features</span>
+if (!await isPaid()) {
+  await showPaywall();
 }
-      </pre>
-    </div>
 
+<span class="comment">// Show Pro features</span></pre>
+    </div>
     <h4>SDK methods</h4>
     <ul class="spec-list">
       <li><code>init()</code> — initializes SDK, shows developer onboarding on first run</li>
