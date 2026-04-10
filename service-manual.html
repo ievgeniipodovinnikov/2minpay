@@ -76,13 +76,13 @@ if (!await isPaid()) {
 loadApp();</pre>
     </div>
 
-    <h4>Usage - Chrome Extension (without bundler)</h4>
-    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-    <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">// 1. Copy the ESM file into your extension folder:</span>
-    <pre style="color: #6ee7b7 !important;" class="text-sm">cp node_modules/sdk-2minpay/dist/index.js ./sdk-2minpay.esm.js</pre>
+<h4>Usage - Chrome Extension (without bundler)</h4>
+<div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
+  <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">// 1. Copy the ESM file into your extension folder:</span>
+cp node_modules/sdk-2minpay/dist/index.js ./sdk-2minpay.esm.js
 
 <span class="comment">// 2. In manifest.json (Manifest V3), allow the API host:</span>
-<span class="comment">// "host_permissions": [ "https://api.2minpay.com/*" ]</span>
+"host_permissions": [ "https://api.2minpay.com/*" ]
 
 <span class="comment">// 3. In popup.html — one module entry (popup imports the SDK):</span>
 &lt;script type="module" src="popup.js"&gt;&lt;/script&gt;
@@ -97,7 +97,7 @@ if (!await isPaid()) {
 }
 
 <span class="comment">// Show Pro features</span></pre>
-    </div>
+</div>
     <h4>SDK methods</h4>
     <ul class="spec-list">
       <li><code>init()</code> — initializes SDK, shows developer onboarding on first run</li>
