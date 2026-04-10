@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Session Expired</title>
-    <script>
-        setTimeout(() => {
-            window.close();
-        }, 3000);
-    </script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 2em;
+            margin-bottom: 16px;
+        }
+        p {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 24px;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ee5a5a;
+        }
+    </style>
 </head>
 <body>
-    <h1>Session expired</h1>
-    <p>Please close this window and try again from the extension.</p>
+    <div class="container">
+        <h1>⏰ Session Expired</h1>
+        <p>Please close this window and try again from the extension.</p>
+        <button onclick="window.close()">Close Window</button>
+    </div>
+    <script>
+        setTimeout(() => window.close(), 3000);
+    </script>
 </body>
 </html>
