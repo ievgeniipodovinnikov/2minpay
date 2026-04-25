@@ -68,8 +68,8 @@ await init();
 
 <span class="comment">// Check if user has access</span>
 if (!await isPaid()) {
-  <span class="comment">// Shows Stripe payment modal</span>
-  await showPaywall();
+  <span class="comment">// Shows Stripe payment modal. Pass monthly price in USD</span>
+  await showPaywall(2.99);
 }
 
 <span class="comment">// User has access — load full app</span>
