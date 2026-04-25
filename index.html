@@ -192,7 +192,7 @@ import { init, isPaid, showPaywall } from "sdk-2minpay";
 await init();
 
 if (!await isPaid()) {
-  await showPaywall();
+  await showPaywall(2.99);
 }
 </pre>
         <div class="mt-4 pt-3 border-t border-gray-700 text-center">
