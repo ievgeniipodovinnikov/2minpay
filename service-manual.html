@@ -93,7 +93,7 @@ import { init, isPaid, showPaywall } from './sdk-2minpay.esm.js';
 await init();
 
 if (!await isPaid()) {
-  await showPaywall();
+  await showPaywall(2.99);
 }
 
 <span class="comment">// Show Pro features</span></pre>
