@@ -33,9 +33,6 @@
     <p class="mb-3">
       • <a href="#js-sdk" class="link">JavaScript SDK</a> — add paywall in 3 lines
     </p>
-    <!-- <p class="mb-3">
-      • <a href="#how-it-works" class="link">Cross-device sync</a> — magic link login, restore purchases
-    </p> -->
   </div>
 
   <!-- WHAT YOU DON'T NEED ANYMORE -->
@@ -77,9 +74,34 @@ if (!await isPaid()) {
 loadApp();</pre>
     </div>
 
-<h4>Usage - Chrome Extension (without bundler)</h4>
-<div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
-  <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">// 1. Copy the ESM file into your extension folder:</span>
+    <h4>Usage - Web App (without bundler)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
+      <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">&lt;!-- Add import map to your HTML --&gt;</span>
+&lt;script type="importmap"&gt;
+  {
+    "imports": {
+      "sdk-2minpay": "https://unpkg.com/sdk-2minpay@latest/dist/index.js"
+    }
+  }
+&lt;/script&gt;
+
+&lt;script type="module"&gt;
+  import { init, isPaid, showPaywall } from 'sdk-2minpay';
+
+  await init();
+
+  if (!await isPaid()) {
+    await showPaywall(2.99);
+  }
+
+  <span class="comment">// Load your app</span>
+  loadApp();
+&lt;/script&gt;</pre>
+    </div>
+
+    <h4>Usage - Chrome Extension (without bundler)</h4>
+    <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
+      <pre style="color: #6ee7b7 !important;" class="text-sm"><span class="comment">// 1. Copy the ESM file into your extension folder:</span>
 cp node_modules/sdk-2minpay/dist/index.js ./sdk-2minpay.esm.js
 
 <span class="comment">// 2. In manifest.json (Manifest V3), allow the API host:</span>
@@ -98,12 +120,13 @@ if (!await isPaid()) {
 }
 
 <span class="comment">// Show Pro features</span></pre>
-</div>
+    </div>
+
     <h4>SDK methods</h4>
     <ul class="spec-list">
       <li><code>init()</code> — initializes SDK, shows developer onboarding on first run</li>
       <li><code>isPaid()</code> → <code>true/false</code> — checks if user has active access</li>
-      <li><code>showPaywall(2.99)</code> — shows Stripe checkout modal. You need to pass mothly price in USD</li>
+      <li><code>showPaywall(2.99)</code> — shows Stripe checkout modal. You need to pass monthly price in USD</li>
     </ul>
 
     <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.2);">
@@ -113,7 +136,7 @@ if (!await isPaid()) {
     </div>
   </div>
 
-  <!-- 3. Pricing -->
+  <!-- Pricing -->
   <div id="pricing" class="card p-6 mb-6 anchor-link">
     <h3>💰 Pricing</h3>
     
@@ -125,7 +148,7 @@ if (!await isPaid()) {
     </ul>
   </div>
 
-  <!-- 4. Security -->
+  <!-- Security -->
   <div class="card p-6">
     <h3>🔒 Security</h3>
     <ul class="spec-list">
