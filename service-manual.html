@@ -67,7 +67,7 @@ await init("developer@example.com");
 <span class="comment">// Check if user has access</span>
 if (!await isPaid()) {
   <span class="comment">// Monthly subscription</span>
-  await showPaywall(2.99);        // subscription (monthly)
+  await showPaywall(2.99, true);        // subscription (monthly)
   
   <span class="comment">// Or one-time payment (lifetime access)</span>
   await showPaywall(9.99, false); // one-time, access forever
@@ -94,7 +94,7 @@ loadApp();</pre>
   await init("developer@example.com");
 
   if (!await isPaid()) {
-    await showPaywall(2.99);
+    await showPaywall(2.99, true);
   }
 
   <span class="comment">// Load your app</span>
@@ -119,7 +119,7 @@ import { init, isPaid, showPaywall } from './sdk-2minpay.esm.js';
 await init("developer@example.com");
 
 if (!await isPaid()) {
-  await showPaywall(2.99);
+  await showPaywall(2.99, true);
 }
 
 <span class="comment">// Show Pro features</span></pre>
