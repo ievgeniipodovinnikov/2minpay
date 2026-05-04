@@ -67,10 +67,10 @@ await init("developer@example.com");
 <span class="comment">// Check if user has access</span>
 if (!await isPaid()) {
   <span class="comment">// Monthly subscription</span>
-  await showPaywall(2.99, true);  // subscription (monthly)
+  await showPaywall(2.99, true);  // $2.99 per month
   
   <span class="comment">// Or one-time payment (lifetime access)</span>
-  await showPaywall(9.99, false); // one-time, access forever
+  await showPaywall(29.99, false); // $29.99 one-time payment, lifetime access
 }
 
 <span class="comment">// User has access — load full app</span>
@@ -93,9 +93,13 @@ loadApp();</pre>
 
   await init("developer@example.com");
 
-  if (!await isPaid()) {
-    await showPaywall(2.99, true); //"true" for monthly subscription, "false" for one-time payment
-  }
+if (!await isPaid()) {
+<span class="comment">// Monthly subscription — $2.99 per month</span>
+    await showPaywall(2.99, true);
+
+<span class="comment">// One-time payment — $29.99 lifetime access</span>
+    await showPaywall(29.99, false);
+}
 
   <span class="comment">// Load your app</span>
   loadApp();
@@ -119,7 +123,11 @@ import { init, isPaid, showPaywall } from './sdk-2minpay.esm.js';
 await init("developer@example.com");
 
 if (!await isPaid()) {
-  await showPaywall(2.99, true);
+<span class="comment">// Monthly subscription — $2.99 per month</span>
+    await showPaywall(2.99, true);
+
+<span class="comment">// One-time payment — $29.99 lifetime access</span>
+    await showPaywall(29.99, false);
 }
 
 <span class="comment">// Show Pro features</span></pre>
