@@ -189,15 +189,22 @@
 <pre class="bg-gray-800 p-3 rounded-lg overflow-x-auto text-sm" style="color: #6ee7b7;">
 import { init, isPaid, showPaywall } from "sdk-2minpay";
 
-await init();
+// Pass your email
+await init("developer@example.com");
 
 if (!await isPaid()) {
-  await showPaywall(2.99);
+  // Monthly subscription
+  await showPaywall(9.99, true);
+  
+  // Or one-time payment
+  // await showPaywall(9.99, false);
 }
 </pre>
         <div class="mt-4 pt-3 border-t border-gray-700 text-center">
           <p class="text-gray-400 text-xs">
-            ✓ License verification via 2MinPay API
+            ✓ License verification via 2MinPay API<br>
+            ✓ Email passed to Stripe for faster onboarding<br>
+            ✓ Supports both subscription and one-time payments
           </p>
         </div>
       </div>
