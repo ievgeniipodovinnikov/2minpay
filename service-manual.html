@@ -61,13 +61,16 @@
     <div class="bg-gray-800 p-3 rounded-lg mb-4 overflow-x-auto">
       <pre style="color: #6ee7b7 !important;" class="text-sm">import { init, isPaid, showPaywall } from "sdk-2minpay";
 
-<span class="comment">// Initialize SDK — first run: connect Stripe, set monthly price</span>
-await init();
+<span class="comment">// Initialize SDK — pass your email for Stripe onboarding</span>
+await init("developer@example.com");
 
 <span class="comment">// Check if user has access</span>
 if (!await isPaid()) {
-  <span class="comment">// Shows Stripe payment modal. Pass monthly price in USD</span>
-  await showPaywall(2.99);
+  <span class="comment">// Monthly subscription</span>
+  await showPaywall(2.99);        // subscription (monthly)
+  
+  <span class="comment">// Or one-time payment (lifetime access)</span>
+  await showPaywall(9.99, false); // one-time, access forever
 }
 
 <span class="comment">// User has access — load full app</span>
@@ -88,7 +91,7 @@ loadApp();</pre>
 &lt;script type="module"&gt;
   import { init, isPaid, showPaywall } from 'sdk-2minpay';
 
-  await init();
+  await init("developer@example.com");
 
   if (!await isPaid()) {
     await showPaywall(2.99);
@@ -113,7 +116,7 @@ cp node_modules/sdk-2minpay/dist/index.js ./sdk-2minpay.esm.js
 <span class="comment">// 4. In popup.js — same API as the web example:</span>
 import { init, isPaid, showPaywall } from './sdk-2minpay.esm.js';
 
-await init();
+await init("developer@example.com");
 
 if (!await isPaid()) {
   await showPaywall(2.99);
@@ -124,14 +127,14 @@ if (!await isPaid()) {
 
     <h4>SDK methods</h4>
     <ul class="spec-list">
-      <li><code>init()</code> — initializes SDK, shows developer onboarding on first run</li>
+      <li><code>init([email])</code> — initializes SDK, shows developer onboarding on first run. Pass email for faster Stripe onboarding</li>
       <li><code>isPaid()</code> → <code>true/false</code> — checks if user has active access</li>
-      <li><code>showPaywall(2.99)</code> — shows Stripe checkout modal. You need to pass monthly price in USD</li>
+      <li><code>showPaywall(price, isSubscription = true)</code> — shows Stripe checkout modal. <code>isSubscription = true</code> (monthly), <code>false</code> (one-time, lifetime access)</li>
     </ul>
 
     <div class="mt-4 p-3 rounded-lg" style="background-color: rgba(17, 94, 74, 0.2);">
       <p class="text-sm" style="color: #d4d4d4;">
-        <strong class="text-white">Developer gets paid access</strong> — the Stripe Connect account owner receives a permanent subscription.
+        <strong class="text-white">Developer gets paid access</strong> — the Stripe Connect account owner receives the payment.
       </p>
     </div>
   </div>
@@ -143,7 +146,7 @@ if (!await isPaid()) {
     <ul class="spec-list">
       <li>2MinPay takes <strong style="color: #a0a5b0;">5% + $0.30</strong> per transaction</li>
       <li>Powered by Stripe. You keep full control of your money.</li>
-      <li>You set your monthly price (e.g., $9.99/month)</li>
+      <li>You set your price (one-time or monthly)</li>
       <li>Payments go directly to your Stripe account</li>
     </ul>
   </div>
